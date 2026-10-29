@@ -59,5 +59,13 @@ def posiciona_frota(frota):
         for barco in boats:
             for lincol in barco:
                 tabuleiro[lincol[0]][lincol[1]] = 1
-                
+
     return tabuleiro
+
+def afundados(frota, tabuleiro):
+    contador = 0
+    for tipo, boats in frota.items():
+        for barco in boats:
+            if all(tabuleiro[lincol[0]][lincol[1]] == 'X' for lincol in barco) == True:
+                contador += 1
+    return contador
