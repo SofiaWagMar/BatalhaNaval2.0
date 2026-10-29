@@ -1,4 +1,4 @@
-grid = [
+tabuleiro = [
       [0,0,0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0,0,0],
@@ -40,4 +40,24 @@ def faz_jogada(tabuleiro, linha, coluna):
         tabuleiro[linha][coluna] = 'X'
     elif tabuleiro[linha][coluna] == 0:
         tabuleiro[linha][coluna] = '-'
+    return tabuleiro
+
+def posiciona_frota(frota):
+    tabuleiro = [
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],]
+    
+    for tipo, boats in frota.items():
+        for barco in boats:
+            for lincol in barco:
+                tabuleiro[lincol[0]][lincol[1]] = 1
+                
     return tabuleiro
