@@ -69,3 +69,29 @@ def afundados(frota, tabuleiro):
             if all(tabuleiro[lincol[0]][lincol[1]] == 'X' for lincol in barco) == True:
                 contador += 1
     return contador
+
+def posicao_valida(frota, linha, coluna, orientacao, tam):
+    tudocerto = True
+    tabuleiro = [
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],
+      [0,0,0,0,0,0,0,0,0,0],]
+    coloca = define_posicoes(linha, coluna, orientacao, tam)
+    for tipo, boats in frota.items():
+        for barco in boats:
+            for lincol in barco:
+                if lincol in coloca:
+                    return False
+                
+    for position in coloca:
+        if position [0] >= 10 or position[1] >= 10:
+            return False
+        
+    return tudocerto
