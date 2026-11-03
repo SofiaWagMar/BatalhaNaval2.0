@@ -3,6 +3,7 @@ from funcoes import faz_jogada as fazJ
 from funcoes import posiciona_frota as posF
 from funcoes import afundados as afun
 from funcoes import posicao_valida as posV
+import random
 
 
 def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
@@ -87,10 +88,13 @@ frota_oponente = {
     ]
 }
 
+
 tabuleiro_oponente = posF(frota_oponente)
 tabuleiro_jogador = posF(frota)
 
 posicao_ataque = []
+posicoes_ataque_oponente = []
+afundado = 0
 jogando = True
 
 while jogando:
@@ -128,3 +132,22 @@ while jogando:
     if afundado == 10:
         print('Parabéns! Você derrubou todos os navios do seu oponente!')
         jogando = False
+
+    else: 
+        jogada_oponente_valida = False
+        while jogada_oponente_valida == False:
+            linha_oponente = random.randint(0, 9)
+            coluna_oponente = random.randint(0, 9)
+            
+            if [linha_oponente, coluna_oponente] not in posicoes_ataque_oponente:
+                posicoes_ataque_oponente.append([linha_oponente, coluna_oponente])
+                jogada_oponente_valida = True
+                
+        print(f'Seu oponente está atacando na linha {linha_oponente} e coluna {coluna_oponente}')
+        
+        tabuleiro_jogador = fazJ(tabuleiro_jogador, linha_oponente, coluna_oponente)
+        
+        afundados_jogador = afun(frota, tabuleiro_jogador)
+        if afundados_jogador == 10:
+            print('Xi! O oponente derrubou toda a sua frota =(')
+            jogando = False
